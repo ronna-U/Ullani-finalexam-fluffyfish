@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="theme-color" content="#007bff">
+    <link rel="manifest" href="manifest.json">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/favicon.ico"/>
+    <title>Flappy Fish</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <audio id="bg-music" loop preload="auto">
+        <source src="sounds effect/background_music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div id="offline-error" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: black; color: white; padding: 20px; border: 2px solid red; border-radius: 5px; text-align: center; z-index: 2000;">
+        You are offline. Please check your internet connection.
+    </div>
+    
+    <div class="background"></div>
+    
+    <div class="modal" id="start-modal">
+        <div class="modal-content">
+            <h2>Welcome to Flappy Fish🐟</h2>
+            <p>Let's Play!🐳</p>
+            <p>Tap or click to jump</p>
+            <div class="button-group">
+                <button class="start-button">Start Game</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="game-over-modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Game Over</h2>
+            <p>Your Score: <span id="final-score">0</span></p>
+            <div class="button-group">
+                <button class="restart-button">Restart</button>
+            </div>
+        </div>
+    </div>
+    
+    <img src="assets/fish.png" alt="fish-gif" class="fish" id="fish-1">
+    
+    <div class="score">
+        <span class="score_title"></span>
+        <span class="score_val"></span>
+    </div>
+
+    <button id="install-button" class="install-button">Install App</button>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('Service Worker Registered'))
+                .catch(err => console.error('SW registration failed:', err));
+        }
+    </script>
+</body>
+</html>
